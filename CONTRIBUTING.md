@@ -15,5 +15,5 @@ The process is straight-forward.
 * Ensure tests work.
 * Create a Pull Request against the [**dev**] branch of KeyMathPy.
 
-Still interested? Then you should take a peek at the [developer documentation] to get more details.
+Still interested? Then you should take a peek at the README.md to get more details.
 
