@@ -33,6 +33,11 @@
 * Added test files for each function
 
 ### January 30, 2018
+* Fixed return type of LineIntersection and FindLineEqn
+* Added PlaneIntersection (finds the line of intersection between two planes)
+* Added PointPlaneDistance (finds shortest distance between a point and plane)
+* Added LinesAngle (finds the angle between two lines)
+* Added test files for each function
 
 ### February 1, 2018
 

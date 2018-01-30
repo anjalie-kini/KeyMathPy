@@ -12,4 +12,9 @@ def lineIntersection(line1, line2):
     d = (det(*line1), det(*line2))
     x = det(d, xdiff) / div
     y = det(d, ydiff) / div
-    return ("(" + str(x) + "," + str(y) + ")")
+
+    line = []
+    line[0] = x
+    line[1] = y
+    print ("(" + str(x) + "," + str(y) + ")")
+    return line
