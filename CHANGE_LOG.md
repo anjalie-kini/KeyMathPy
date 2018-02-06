@@ -39,7 +39,6 @@
 * Added LinesAngle (finds the angle between two lines)
 * Added test files for each function
 
-### February 1, 2018
-
 ### February 2, 2018
-
+* Fixed error in Contributing
+* Began framework of Genetic Algorithm
