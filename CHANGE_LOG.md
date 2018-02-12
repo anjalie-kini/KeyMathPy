@@ -42,3 +42,9 @@
 ### February 2, 2018
 * Fixed error in Contributing
 * Began framework of Genetic Algorithm
+
+### February 6, 2018
+* Worked on Genetic Algorithm framework
+
+### February 9, 2018
+* Worked on Genetic Algorithm framework + test
