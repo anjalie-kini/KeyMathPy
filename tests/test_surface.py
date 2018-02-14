@@ -25,6 +25,7 @@ class PointTestCase(unittest.TestCase):
 		self.assertEqual(1, l.y_intercept)
 		self.assertEqual(1,l.slope)
 
+	
 
 if __name__ == '__main__':
 	unittest.main()

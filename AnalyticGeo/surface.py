@@ -31,7 +31,6 @@ class Line:
 			self.c = c
 
 
-
 	def getCoef(self,p1,p2):
 		self.slope = (p2.y-p1.y) / (p2.x - p1.x)
 		self.y_intercept = p1.y -  p1.x * self.slope
@@ -50,8 +49,21 @@ class Line:
 		return abs(theta1 - theta2)
 
 class Plane:
-	def __init__(self,p1,line):
-		pass
+	def __init__(self,a,b,c, x1=0,y1=0,z1=0):
+		"""Constructs a Plane object
+		a(x-x1) + b(y-y1) + z(z-z1) = 0
+		"""
+		self.x_int = x_int,self.y_int = y_int,self.z_int = z_int
+		self.a = a,self.b = b,self.c = c
+
+
+
+
+
+
+
+
+
 
 
 
