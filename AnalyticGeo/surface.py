@@ -3,32 +3,56 @@ from math import sqrt, atan
 class Point:
 	x = None
 	y = None
+	z = None
 
-	def __init__(self, x,y):
+	def __init__(self, x,y,z=0):
 		self.x = x
 		self.y = y
+		self.z = z
 
-	def distanceFormula(self,p_other):
-		sq1 = pow((self.x - p_other.x) ,2)
-		sq2 = pow((self.y - p_other.y), 2)
-		return sqrt(sq1 + sq2)
+	def distanceFormula(self,other):
+		sq1 = pow((self.x - other.x) ,2)
+		sq2 = pow((self.y - other.y), 2)
+		sq3 = pow((self.z - other.z), 2)
+		return sqrt(sq1 + sq2 + sq3)
 
 	def pointLineDistance(self,l_other):
 		return l_other.PointLineDistance(self)
 
 class Line:
-	def __init__(self, p1=None, p2=None,a=None,b=None,c=None):
-		'''Creates a Line object using two Point objects, or with coefficients
-		Args:
-			p1: The 
-
+	def __init__(self, coef=None, p=None):
+		'''Creates a Line object using its slope and a point
+		Lines go up to 3D and are stored in parametric form:
+			r(t) = <x1,y1,z1> + t<a,b,c>
+		where (x1,y1,z1) is p1, a point on the line and
+		coef is <a,b,c> is coef
 		'''
-		if p1 and p2 and not (a and b and c):
-			self.getCoef(p1,p2)
-		elif a and b and c:
-			self.a = a
-			self.b = b
-			self.c = c
+		if len(coef) == 2:
+			coef[2] = 0
+		self.coef = coef
+		if len(p) == 2:
+			point[2] = 0
+		self.point = p
+		print(str(len(p)) + "   " + str(len(coef)))
+
+	@classmethod
+	def fromSlopeInt2D(cls, slope, y_int):
+		coef = [1,slope,0]
+		point = [0,y_int,0]
+		return cls(coef,point)
+
+
+	def getValue(self,t):
+		"""
+		Returns the value of the line at the specified point t
+		"""
+
+		p = []
+		for index, val in enumerate(self.coef):
+			p.append(val * t + self.point[index]) 
+			# p[1] = val * t + self.point[index]
+			# p[2] = val * t + self.point[index]
+		return p
 
 
 	def getCoef(self,p1,p2):
@@ -38,23 +62,55 @@ class Line:
 		self.b = (-1) * self.slope
 		self.a = 1
 
-	def pointLineDistance(p_other):
-		denom = math.sqrt( pow(p_other.x,2) + pow(p_other.y,2))
-		num = self.a * p_other.x  + self.b * p_other.y + c
-		return num / denom
+	# def pointLineDistance(p_other):
+	# 	denom = math.sqrt(pow(p_other.x,2) + pow(p_other.y,2))
+	# 	num = self.a * p_other.x  + self.b * p_other.y + c
+	# 	return num / denom
 
-	def linesAngle(l_other):
-		theta1 = atan(self.slope)
-		theta2 = atan(l_other.slope)
-		return abs(theta1 - theta2)
+	# def linesAngle(l_other):
+	# 	theta1 = atan(self.slope)
+	# 	theta2 = atan(l_other.slope)
+	# 	return abs(theta1 - theta2)
 
 class Plane:
-	def __init__(self,a,b,c, x1=0,y1=0,z1=0):
+	def __init__(self,normal, point):
 		"""Constructs a Plane object
-		a(x-x1) + b(y-y1) + z(z-z1) = 0
+		Params:
+			normal: the normal vector to the plane, list form
+			point: A point on the plane, list form
 		"""
-		self.x_int = x_int,self.y_int = y_int,self.z_int = z_int
-		self.a = a,self.b = b,self.c = c
+		self.normal = normal
+		if point:
+			self.point = point
+		else:
+			self.point = [0,0,0]
+		self.d = 0
+		for index, elem in enumerate(point):
+			self.d += elem * normal[index]
+
+
+	def planeIntersection(other):
+		"""
+		Cross `self` with other
+		NOT FINISHED
+		"""
+		crossedPlanes = crossProduct(self.normal, other.normal)
+
+		x = ((self.d*other.normal[0] - other.d*plane*self.normal[0])/ 
+			(self.normal[1]*other.normal[0] - other.normal[0]*plane*self.normal[1]))
+		y = ((self.d*other.normal[1] - other.d*plane*self.normal[1])/
+		 (self.normal[0]*other.normal[1] - other.normal[1]*plane*self.normal[0]))
+		point = []
+    	# point[0] = x.point[1] y,point[2] = 0
+
+
+	@staticmethod
+	def crossProduct(normal1, normal2):
+		cross = []
+		cross[0] = normal1[1]*normal2[2] - normal1[2]*noraml2[1]
+		cross[1] = normal1[2]*normal2[0] - normal1[0]*normal2[2]
+		cross[2] = normal1[0]*normal2[1] - normal1[1]*normal2[0]
+		return cross
 
 
 
