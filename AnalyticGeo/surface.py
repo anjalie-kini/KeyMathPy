@@ -1,19 +1,14 @@
 from math import sqrt, atan
 
 class Point:
-	x = None
-	y = None
-	z = None
 
-	def __init__(self, x,y,z=0):
-		self.x = x
-		self.y = y
-		self.z = z
+	def __init__(self, vals):
+		self.vals = vals
 
 	def distanceFormula(self,other):
-		sq1 = pow((self.x - other.x) ,2)
-		sq2 = pow((self.y - other.y), 2)
-		sq3 = pow((self.z - other.z), 2)
+		sq1 = pow((self.vals[0] - other.vals[0]) ,2)
+		sq2 = pow((self.vals[1] - other.vals[1]), 2)
+		sq3 = pow((self.vals[2] - other.vals[2]), 2)
 		return sqrt(sq1 + sq2 + sq3)
 
 	def pointLineDistance(self,l_other):
@@ -33,7 +28,6 @@ class Line:
 		if len(p) == 2:
 			point[2] = 0
 		self.point = p
-		print(str(len(p)) + "   " + str(len(coef)))
 
 	@classmethod
 	def fromSlopeInt2D(cls, slope, y_int):
@@ -42,9 +36,9 @@ class Line:
 		return cls(coef,point)
 
 
-	def getValue(self,t):
+	def getValueT(self,t=None):
 		"""
-		Returns the value of the line at the specified point t
+		Returns the value of the line at the specified t
 		"""
 
 		p = []
@@ -54,23 +48,35 @@ class Line:
 			# p[2] = val * t + self.point[index]
 		return p
 
+	def getValueX(self,x=0):
+		"""
+		Returns the value of the line at the specified x-value. 
+		Only for lines in two dimensions
+		"""
+		t_value = (x - self.point[0]) / self.coef[0]
+		return self.getValueT(t_value)
 
-	def getCoef(self,p1,p2):
-		self.slope = (p2.y-p1.y) / (p2.x - p1.x)
-		self.y_intercept = p1.y -  p1.x * self.slope
-		self.c = -1 * self.y_intercept
-		self.b = (-1) * self.slope
-		self.a = 1
+	def pointLineDistance(p_other):
+		"""
+		Currently only functional for lines in the XY plane
+		"""
+		denom = math.sqrt(pow(p_other.x,2) + pow(p_other.y,2))
+		num = self.a * p_other.x  + self.b * p_other.y + c
+		return num / denom
 
-	# def pointLineDistance(p_other):
-	# 	denom = math.sqrt(pow(p_other.x,2) + pow(p_other.y,2))
-	# 	num = self.a * p_other.x  + self.b * p_other.y + c
-	# 	return num / denom
-
-	# def linesAngle(l_other):
-	# 	theta1 = atan(self.slope)
-	# 	theta2 = atan(l_other.slope)
-	# 	return abs(theta1 - theta2)
+	def linesAngle(l_other):
+		"""
+		For both lines in the 2D and 3D space
+		"""
+		dot = 0
+		for index, val in enumerate(self.coef):
+			dot += val * l_other.coef[index]
+		mag1 = math.sqrt(math.pow(self.coef[0],2) + math.pow(self.coef[1],2) + math.pow(self.coef[2],2))
+		mag2 = math.sqrt(math.pow(l_other.coef[0],2), math.pow(l_other.coef[1],2), math.pow(l_other.coef[2],2))
+		return dot / (mag1 * mag2)
+		# theta1 = atan(self.slope)
+		# theta2 = atan(l_other.slope)
+		# return abs(theta1 - theta2)
 
 class Plane:
 	def __init__(self,normal, point):
