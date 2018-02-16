@@ -51,17 +51,21 @@ class Line:
 	def getValueX(self,x=0):
 		"""
 		Returns the value of the line at the specified x-value. 
-		Only for lines in two dimensions
+		NOTE: Only for lines in two dimensions
 		"""
 		t_value = (x - self.point[0]) / self.coef[0]
 		return self.getValueT(t_value)
 
-	def pointLineDistance(p_other):
+	def pointLineDistance(self,p_other):
 		"""
-		Currently only functional for lines in the XY plane
+		Currently only functional for lines in two dimensions (XY)
 		"""
-		denom = math.sqrt(pow(p_other.x,2) + pow(p_other.y,2))
-		num = self.a * p_other.x  + self.b * p_other.y + c
+		a = -1 * self.coef[0]
+		b = 1
+		c = self.point[1]
+
+		denom = sqrt(pow(p_other.vals[0],2) + pow(p_other.vals[1],2))
+		num = a * p_other.vals[0] + b * p_other.vals[1] + c
 		return num / denom
 
 	def linesAngle(l_other):
@@ -71,12 +75,9 @@ class Line:
 		dot = 0
 		for index, val in enumerate(self.coef):
 			dot += val * l_other.coef[index]
-		mag1 = math.sqrt(math.pow(self.coef[0],2) + math.pow(self.coef[1],2) + math.pow(self.coef[2],2))
-		mag2 = math.sqrt(math.pow(l_other.coef[0],2), math.pow(l_other.coef[1],2), math.pow(l_other.coef[2],2))
+		mag1 = sqrt(math.pow(self.coef[0],2) + math.pow(self.coef[1],2) + math.pow(self.coef[2],2))
+		mag2 = sqrt(math.pow(l_other.coef[0],2), math.pow(l_other.coef[1],2), math.pow(l_other.coef[2],2))
 		return dot / (mag1 * mag2)
-		# theta1 = atan(self.slope)
-		# theta2 = atan(l_other.slope)
-		# return abs(theta1 - theta2)
 
 class Plane:
 	def __init__(self,normal, point):
