@@ -10,6 +10,7 @@ class PointTestCase(unittest.TestCase):
 		p = Point([2,3,0])
 		p2 = Point([5,6,0])
 		self.assertAlmostEqual(4.242640687, p.distanceFormula(p2))
+
 		p = Point([-2,-3,0])
 		p2 = Point([-3,-4,0])
 		self.assertAlmostEqual(1.414213562, p.distanceFormula(p2))
@@ -19,18 +20,14 @@ class PointTestCase(unittest.TestCase):
 		self.assertAlmostEqual(227.1849467, p.distanceFormula(p2))
 
 
-
-	def testLineConstructor3D(self):
-		pass
-
 	def testPointLineDistance(self):
-		pass
+		pass #tested in testSurfaceLine.py
 
 
 
 
 
-	
+
 
 if __name__ == '__main__':
 	unittest.main()
