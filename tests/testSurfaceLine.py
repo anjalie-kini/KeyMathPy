@@ -3,7 +3,7 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from AnalyticGeo.surface import Point, Line, Plane
 from numpy.testing import assert_almost_equal
-
+import math
 
 class LineTestCase(unittest.TestCase):
 	def testLineConstructor2D(self):
@@ -27,8 +27,6 @@ class LineTestCase(unittest.TestCase):
 		assert_almost_equal(l.getValueT(-1), [-1,-3.6,0])
 		assert_almost_equal(l.getValueX(.3), [.3,-13.35,0])
 
-
-
 	def testLineConstructor3D(self):
 		l = Line(coef=[1,2,3],p=[9,7,6])
 		self.assertListEqual(l.getValueT(2), [11,11,12])
@@ -43,18 +41,22 @@ class LineTestCase(unittest.TestCase):
 		assert_almost_equal(l.getValueT(-10), [32,-29.98,-387])
 
 
-	# def testPointLineDistance(self): #uncomment when PointLineDistance fixed
-	# 	p = Point([2,3])
-	# 	l = Line(coef=[1,2], p=[9,7])
-	# 	self.assertListEqual(l.pointLineDistance(p), 8/math.pow(3,1/2));
+	def testPointLineDistance(self): #uncomment when PointLineDistance fixed
+		p = Point([2,3])
+		l = Line(coef=[1,2], p=[9,7])
+		self.assertAlmostEqual(l.pointLineDistance(p), 4.472135955)
+		# NEEDS MORE TESTS
 
 
-	# def linesAngleTest(self): #uncomment when linesAngleTest fixed
-		# l1 = Line(coef=[1,2,3], p =[9,7,6])
-		# l2 = Line(coef=[4,5,6], p=[1,4,2])
-		# l3 = Line(coef=[1,2,1], p=[0,0,0])
+
+	def testLinesAngle(self): #uncomment when linesAngleTest fixed
+		l1 = Line(coef=[1,2,3], p =[9,7,6])
+		l2 = Line(coef=[4,5,6], p=[1,4,2])
+		l3 = Line(coef=[1,2,1], p=[0,0,0])
+		l4 = Line(coef=[2,-3,1], p=[1,2,3])
 		# assert_almost_equal(l1.linesAngle(l2), 0)
-		# assert_almost_equal(l1.linesAngle(l2), math.acos(4/sqrt(21)))
+		self.assertAlmostEqual(l1.linesAngle(l2), 0.2257261286)
+		self.assertAlmostEqual(l4.linesAngle(l3), 1.904269499)
 
 
 

@@ -1,4 +1,4 @@
-from math import sqrt, atan
+from math import sqrt, acos
 
 class Point:
 
@@ -18,15 +18,15 @@ class Line:
 	def __init__(self, coef=None, p=None):
 		'''Creates a Line object using its slope and a point
 		Lines go up to 3D and are stored in parametric form:
-			r(t) = <x1,y1,z1> + t<a,b,c>
+			r(t) = <x1,y1,z1> + t<s1,s2,s3>
 		where (x1,y1,z1) is p1, a point on the line and
 		coef is <a,b,c> is coef
 		'''
 		if len(coef) == 2:
-			coef[2] = 0
+			coef.append(0)
 		self.coef = coef
 		if len(p) == 2:
-			point[2] = 0
+			p.append(0)
 		self.point = p
 
 	@classmethod
@@ -39,6 +39,7 @@ class Line:
 	def getValueT(self,t=None):
 		"""
 		Returns the value of the line at the specified t
+		YOU MIGHT NOT WANT TO KEEP THIS, IDK
 		"""
 
 		p = []
@@ -48,7 +49,7 @@ class Line:
 			# p[2] = val * t + self.point[index]
 		return p
 
-	def getValueX(self,x=0):
+	def getValueX(self,x):
 		"""
 		Returns the value of the line at the specified x-value. 
 		NOTE: Only for lines in two dimensions
@@ -60,24 +61,31 @@ class Line:
 		"""
 		Currently only functional for lines in two dimensions (XY)
 		"""
-		a = -1 * self.coef[0]
-		b = 1
-		c = self.point[1]
+		# Getting a line in terms of x and y
+		# a1x + b1y + c1 = 0
+		y_intercept = (-1 * self.point[0]/self.coef[0])* self.coef[1] + self.point[1]
+		slope = (1 / self.coef[0]) * self.coef[1]
 
-		denom = sqrt(pow(p_other.vals[0],2) + pow(p_other.vals[1],2))
-		num = a * p_other.vals[0] + b * p_other.vals[1] + c
-		return num / denom
+		a1 = -1 * slope
+		b1 = 1
+		c1 = -1 * y_intercept
 
-	def linesAngle(l_other):
+		denom = sqrt(pow(a1,2) + pow(b1,2))
+
+		num = a1 * p_other.vals[0] + b1 * p_other.vals[1] + c1
+		print(num)
+		return abs(num / denom)
+
+	def linesAngle(self,l_other):
 		"""
 		For both lines in the 2D and 3D space
 		"""
 		dot = 0
 		for index, val in enumerate(self.coef):
 			dot += val * l_other.coef[index]
-		mag1 = sqrt(math.pow(self.coef[0],2) + math.pow(self.coef[1],2) + math.pow(self.coef[2],2))
-		mag2 = sqrt(math.pow(l_other.coef[0],2), math.pow(l_other.coef[1],2), math.pow(l_other.coef[2],2))
-		return dot / (mag1 * mag2)
+		mag1 = sqrt(pow(self.coef[0],2) + pow(self.coef[1],2) + pow(self.coef[2],2))
+		mag2 = sqrt(pow(l_other.coef[0],2)+ pow(l_other.coef[1],2)+pow(l_other.coef[2],2))
+		return acos(dot / (mag1 * mag2))
 
 class Plane:
 	def __init__(self,normal, point):
