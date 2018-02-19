@@ -48,3 +48,33 @@
 
 ### February 9, 2018
 * Worked on Genetic Algorithm framework + test
+
+OTHER'S PROJECT WEEK
+### February 12, 2018
+* Michelle added surfaces for Point, Line, Plane
+
+### February 13, 2018
+* Michelle added tests folder
+* Michelle added some tests for Point, Line functions
+
+### February 14, 2018
+* Michelle added Plane class
+
+### February 15, 2018
+* Michelle added more tests
+* Michelle updated Line class to accept 3D lines
+* Michelle enhanced Line class and its functions
+
+### February 16, 2018
+* Michelle added separate testing files for classes
+* Michelle updated faulty class code in surface
+* Michelle added more tests
+* Michelle fixed pointLineIntersection
+* Sarah added to surface.py tests
+(END OF OTHER PROECT'S WEEK)
+
+### February 18, 2018
+* Fixed all compile errors in genetic algorithm code
+* Got main test case working (geneticTest.py)
+
+### February 19, 2018
