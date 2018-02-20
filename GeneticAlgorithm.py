@@ -4,8 +4,11 @@ import copy
 import os, datetime
 import math
 
-
+# Implementation of a genetic algorithm. 
 class GeneticAlgorithm:
+    # Create a new genetic algorithm.
+    # crossoverRate: The crossover rate as a percentage (0-1 inclusive)
+    # mutationRate: The mutation rate as a percentage (0-1 inclusive)
     def __init__(self, crossoverPolicy, crossoverRate, mutationPolicy, mutationRate, selectionPolicy):
         if (crossoverRate < 0 or crossoverRate > 1):
             raise Exception("Invalid crossoverRate: " + str(crossoverRate))
@@ -33,6 +36,9 @@ class GeneticAlgorithm:
     def getSelectionPolicy(self):
         return self.selectionPolicy
 
+    # Evolve the given population. Evolution stops when the stopping condition
+    # is satisfied. Updates generationCount with the number of generations evolved 
+    # before the StoppingCondition is satisfied
     def evolve(self, initialPopulation, stoppingCondition):
         currentPopulation = initialPopulation
         generationCount = 0
@@ -41,7 +47,14 @@ class GeneticAlgorithm:
             generationCount = generationCount + 1
         return currentPopulation
 
-
+    # Evolve the given population into the next generation.
+    # Get nextGeneration population to fill from currentPopulation, using its nextGeneration method
+    # Loop until new generation is filled:
+    #  Apply configured SelectionPolicy to select a pair of parents from currentPopulation
+    #  With probability = crossoverRate, apply configured CrossoverPolicy to parents
+    #  With probability = getMutationRate, apply configured MutationPolicy to each offspring
+    #  Add offspring individually to nextGeneration, space permitting
+    # Return nextGeneration</li>
     def nextGeneration(self, currentPopulation):
         nextGeneration = currentPopulation.nextGeneration()
         while (nextGeneration.getPopulationSize() < nextGeneration.getPopulationLimit()):
@@ -52,7 +65,7 @@ class GeneticAlgorithm:
             if (random() < self.getCrossoverRate()):
                 pair = self.getCrossoverPolicy().crossover(pair.getFirst(), pair.getSecond())
 
-            # mutation?
+            # mutate?
             if (random() < self.getMutationRate()):
                 # apply mutation policy
                 pair = ChromosomePair(self.getMutationPolicy().mutate(pair.getFirst()), self.getMutationPolicy().mutate(pair.getSecond()))
@@ -66,8 +79,9 @@ class GeneticAlgorithm:
         return nextGeneration
 
 
-
+# A collection of chromosomes/individuals that facilitates generational evolution.
 class Population:
+    # thresholdRate: The percentage (0-1 inclusive) of the best chromosomes retained in the next generation
     def __init__(self, populationLimit, thresholdRate, chromosomes=None):
         if (populationLimit < 0):
             raise Exception("Invalid populationLimit: " + str(populationLimit))
@@ -110,6 +124,7 @@ class Population:
             raise Exception("Size of population (" + len(chromosomes) + ") exceeds input limit: " + str(limit))
         self.populationLimit = limit
 
+    # Select proportion of best chromosomes based on thresholdRate
     def nextGeneration(self):
         # initialize a new generation with the same parameters
         nextGeneration = Population(self.getPopulationLimit(), self.getThresholdRate());

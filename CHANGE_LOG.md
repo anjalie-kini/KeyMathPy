@@ -71,10 +71,14 @@ OTHER'S PROJECT WEEK
 * Michelle added more tests
 * Michelle fixed pointLineIntersection
 * Sarah added to surface.py tests
-(END OF OTHER PROECT'S WEEK)
+
+(END OF OTHER PROJECT'S WEEK)
 
 ### February 18, 2018
 * Fixed all compile errors in genetic algorithm code
 * Got main test case working (geneticTest.py)
 
 ### February 19, 2018
+* Added comments for main code and test
+
+### February 20, 2018
