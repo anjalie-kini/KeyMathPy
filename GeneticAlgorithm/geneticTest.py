@@ -11,9 +11,9 @@ class StringChromosome(GeneticAlgorithm.Chromosome):
 
 	# Computed as "distance" from target string
     def getFitness(self):
-        # compute once
+        # Compute once
         if (self.fitness == GeneticAlgorithm.Chromosome.NO_FITNESS):
-            f=0 # best fitness
+            f=0 # Best fitness
             myRep = self.getRepresentation()
             listTgt = list(self.target)
             for i in range(len(listTgt)):
@@ -66,7 +66,7 @@ class OnePointCrossover(GeneticAlgorithm.CrossoverPolicy):
         if (firstLength != secondChromo.getLength()):
             raise Exception("Length of first chromosome (" + str(firstLength) + ") does not match length of the second: " + str(secondChromo.getLength()))
 
-        # representations of the parents
+        # Representations of the parents
         parent1Rep = firstChromo.getRepresentation();
         parent2Rep = secondChromo.getRepresentation();
 
@@ -74,10 +74,10 @@ class OnePointCrossover(GeneticAlgorithm.CrossoverPolicy):
         child1Rep = [];
         child2Rep = [];
 
-        # select a crossover point at random 
+        # Select a crossover point at random
         crossoverIndex = 1 + (randint(0, firstLength-2))
 
-        # copy the first part
+        # Copy the first part
         for i in range(crossoverIndex):
             child1Rep.append(parent1Rep[i])
             child2Rep.append(parent2Rep[i])
@@ -91,7 +91,7 @@ class OnePointCrossover(GeneticAlgorithm.CrossoverPolicy):
 
 # Tournament selection scheme. Each of the two selected chromosomes is selected
 # based on n-ary tournament -- this is done by drawing a predetermined random
-# number of chromosomes without replacement from the population, and then 
+# number of chromosomes without replacement from the population, and then
 # selecting the fittest chromosome among them.
 class TournamentSelection(GeneticAlgorithm.SelectionPolicy):
     def __init__(self, arity):
@@ -153,12 +153,12 @@ def randomRepresentation(size):
 
 ####################################################################################################################
 def main():
-    print ("####### Current time at start = " + str(datetime.datetime.now())) 
+    print ("####### Current time at start = " + str(datetime.datetime.now()))
     algo = GeneticAlgorithm.GeneticAlgorithm(OnePointCrossover(), 0.9, RandomCharMutation(), 0.03, TournamentSelection(2))
     initialPop = getInitialPopulation()
     finalPopulation = algo.evolve(initialPop, FitnessCondition(-3))
     best = finalPopulation.getFittestChromosome()
-    print ("####### Current time at end = " + str(datetime.datetime.now())) 
+    print ("####### Current time at end = " + str(datetime.datetime.now()))
 
 if __name__ == '__main__':
     main()

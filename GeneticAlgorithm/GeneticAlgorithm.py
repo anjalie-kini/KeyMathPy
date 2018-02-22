@@ -4,7 +4,7 @@ import copy
 import os, datetime
 import math
 
-# Implementation of a genetic algorithm. 
+# Implementation of a genetic algorithm.
 class GeneticAlgorithm:
     # Create a new genetic algorithm.
     # crossoverRate: The crossover rate as a percentage (0-1 inclusive)
@@ -37,7 +37,7 @@ class GeneticAlgorithm:
         return self.selectionPolicy
 
     # Evolve the given population. Evolution stops when the stopping condition
-    # is satisfied. Updates generationCount with the number of generations evolved 
+    # is satisfied. Updates generationCount with the number of generations evolved
     # before the StoppingCondition is satisfied
     def evolve(self, initialPopulation, stoppingCondition):
         currentPopulation = initialPopulation
@@ -50,31 +50,31 @@ class GeneticAlgorithm:
     # Evolve the given population into the next generation.
     # Get nextGeneration population to fill from currentPopulation, using its nextGeneration method
     # Loop until new generation is filled:
-    #  Apply configured SelectionPolicy to select a pair of parents from currentPopulation
-    #  With probability = crossoverRate, apply configured CrossoverPolicy to parents
-    #  With probability = getMutationRate, apply configured MutationPolicy to each offspring
-    #  Add offspring individually to nextGeneration, space permitting
+    # Apply configured SelectionPolicy to select a pair of parents from currentPopulation
+    # With probability = crossoverRate, apply configured CrossoverPolicy to parents
+    # With probability = getMutationRate, apply configured MutationPolicy to each offspring
+    # Add offspring individually to nextGeneration, space permitting
     # Return nextGeneration</li>
     def nextGeneration(self, currentPopulation):
         nextGeneration = currentPopulation.nextGeneration()
         while (nextGeneration.getPopulationSize() < nextGeneration.getPopulationLimit()):
-            # select parent chromosomes
+            # Select parent chromosomes
             pair = self.getSelectionPolicy().select(currentPopulation)
 
-            # crossover?
+            # Crossover?
             if (random() < self.getCrossoverRate()):
                 pair = self.getCrossoverPolicy().crossover(pair.getFirst(), pair.getSecond())
 
-            # mutate?
+            # Mutate?
             if (random() < self.getMutationRate()):
                 # apply mutation policy
                 pair = ChromosomePair(self.getMutationPolicy().mutate(pair.getFirst()), self.getMutationPolicy().mutate(pair.getSecond()))
 
-            # add the first chromosome to the population
+            # Add the first chromosome to the population
             nextGeneration.addChromosome(pair.getFirst())
-            # still room for the second chromosome?
+            # Still room for the second chromosome?
             if (nextGeneration.getPopulationSize() < nextGeneration.getPopulationLimit()):
-                # add the second chromosome to the population
+                # Add the second chromosome to the population
                 nextGeneration.addChromosome(pair.getSecond())
         return nextGeneration
 
@@ -214,7 +214,7 @@ class CrossoverPolicy:
         pass
 
 class MutationPolicy:
-    # Changes a randomly chosen element of the representation 
+    # Changes a randomly chosen element of the representation
     @abstractmethod
     def mutate(self, originalChromosome):
         pass
@@ -228,5 +228,3 @@ class StoppingCondition:
     @abstractmethod
     def isSatisfied(self, population):
         pass
-
-

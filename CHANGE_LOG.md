@@ -79,6 +79,13 @@ OTHER'S PROJECT WEEK
 * Got main test case working (geneticTest.py)
 
 ### February 19, 2018
-* Added comments for main code and test
+* Added comments for Genetic Algorithm main code and test
 
 ### February 20, 2018
+* Added comments for all functions
+* Debugged and fixed all functions and tests in NumberTheory
+* Debugged and fixed all functions and tests in Combinatorics
+* Debugged and fixed all functions and tests in MiscGeo
+* In each folder (Number Theory, Combinatorics, MiscGeo) merged all tests into a single class using unit test framework and Asserts
+
+### February 22, 2018
