@@ -1,3 +1,4 @@
+# Checks if n is prime, returns boolean
 def checkPrime(n):
     if(n == 1):
         return False

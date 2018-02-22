@@ -1,3 +1,4 @@
+# Finds all prime factors of n
 def primeFactors(n):
     i = 2
     factors = []

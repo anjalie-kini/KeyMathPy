@@ -1,3 +1,4 @@
+# Finds the nth Fibonacci number
 def fibonacci(n):
     if (n == 1):
         return 0

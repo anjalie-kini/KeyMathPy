@@ -1,3 +1,4 @@
+#Finds the intersection line between two planes
 def planeIntersection(plane1, plane2):
     crossedPlanes = []
     crossedPlanes[0] = (plane1[1]*plane2[2]) - (plane1[2]*plane[1])
@@ -16,4 +17,4 @@ def planeIntersection(plane1, plane2):
     line[0] = crossedPlanes
     line[1] = point
 
-    return line 
+    return line

@@ -1,3 +1,4 @@
+# Finds the area of the polygon given its coordinates (in clockwise order)
 def PolygonArea(corners):
     n = len(corners) # of corners
     area = 0.0
@@ -8,6 +9,7 @@ def PolygonArea(corners):
     area = abs(area) / 2.0
     return area
 
+# Orders the vertices of a polygon into clockwise order
 def PolygonSort(corners):
     # calculate centroid of the polygon
     n = len(corners) # of corners

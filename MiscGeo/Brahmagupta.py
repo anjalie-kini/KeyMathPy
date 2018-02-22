@@ -1,5 +1,6 @@
 import math
 
+#Finds the area of a quadrilateral, given the lengths of its sides
 def QuadArea(sides):
     area = 0.0
     perimeter = 0.0

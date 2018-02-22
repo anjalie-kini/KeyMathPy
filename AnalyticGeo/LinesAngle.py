@@ -1,7 +1,6 @@
-# Done
-
 from math import *
 
+# Finds the angle (in degrees) between two lines
 def linesAngle(line1, line2):
     theta1 = math.atan(line1[0])
     theta2 = math.atan(line2[0])
