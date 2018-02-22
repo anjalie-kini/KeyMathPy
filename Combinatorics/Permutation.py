@@ -1,2 +1,4 @@
+import Factorial
+
 def permutation(n,r):
-    return(factorial(n) / (factorial(n-r)))
+    return(Factorial.factorial(n) / (Factorial.factorial(n-r)))
