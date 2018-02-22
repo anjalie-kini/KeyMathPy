@@ -8,5 +8,5 @@ def primeFactors(n):
             n /= i
             factors.append(i)
     if n > 1:
-        factors.append(n)
+        factors.append(int(n))
     return factors
