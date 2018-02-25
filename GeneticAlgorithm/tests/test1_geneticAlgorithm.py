@@ -1,6 +1,10 @@
-import os, datetime
-import GeneticAlgorithm
 from random import randint
+
+import os, sys, datetime
+sys.path.insert(0, os.path.abspath('..'))
+
+import GeneticAlgorithm
+
 
 def getInitialPopulation():
     TARGET_STRING = "Phillips Andover"
@@ -19,9 +23,9 @@ def randomRepresentation(size):
 ####################################################################################################################
 def main():
     print ("####### Current time at start = " + str(datetime.datetime.now())) 
-    algo = GeneticAlgorithm.GeneticAlgorithm(GeneticAlgorithm.NPointCrossover(2), 0.9, GeneticAlgorithm.RandomCharMutation(), 0.02, GeneticAlgorithm.TournamentSelection(2))
+    algo = GeneticAlgorithm.GeneticAlgorithm(GeneticAlgorithm.OnePointCrossover(), 0.9, GeneticAlgorithm.RandomCharMutation(), 0.03, GeneticAlgorithm.TournamentSelection(2))
     initialPop = getInitialPopulation()
-    finalPopulation = algo.evolve(initialPop, GeneticAlgorithm.FixedGenerationCount(10000))
+    finalPopulation = algo.evolve(initialPop, GeneticAlgorithm.FitnessCondition(-30))
     best = finalPopulation.getFittestChromosome()
     print ("####### Current time at end = " + str(datetime.datetime.now())) 
 

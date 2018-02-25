@@ -1,9 +1,13 @@
+import unittest
+
+import os, sys, datetime
+sys.path.insert(0, os.path.abspath('..'))
+
 import CheckPrime
 import FindFactors
 import Gcd
 import Lcm
 import PrimeFactors
-import unittest
 
 class NumberTheoryTest(unittest.TestCase):
   def testCheckPrime(self):

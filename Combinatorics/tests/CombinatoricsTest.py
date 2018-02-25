@@ -1,9 +1,13 @@
+import unittest
+
+import os, sys, datetime
+sys.path.insert(0, os.path.abspath('..'))
+
 import Catalan
 import Combination
 import Factorial
 import Fibonacci
 import Permutation
-import unittest
 
 class CombinatoricsTest(unittest.TestCase):
   def testCatalan(self):

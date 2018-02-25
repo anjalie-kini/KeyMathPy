@@ -1,6 +1,10 @@
+import unittest
+
+import os, sys, datetime
+sys.path.insert(0, os.path.abspath('..'))
+
 import Brahmagupta
 import Heron
-import unittest
 
 class MiscGeoTest(unittest.TestCase):
   def test_Brahmagupta(self):
