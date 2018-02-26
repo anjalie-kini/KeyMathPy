@@ -89,3 +89,14 @@ OTHER'S PROJECT WEEK
 * In each folder (Number Theory, Combinatorics, MiscGeo) merged all tests into a single class using unit test framework and Asserts
 
 ### February 22, 2018
+* Enhanced GeneticAlgorithm by moving most variation (in terms of crossover policy or stop time conditions) out of test file into main file
+
+### February 23, 2018
+* Added two genetic algorithm testSuite
+
+### February 24, 2017
+* Fixed all tests so they work without being in the same folder as their corresponding functions
+
+### February 25, 2017
+* Debugged and fixed all functions of AnalyticGeo
+* Merged all tests in AnalyticGeo into a single class using unit test framework and Asserts
