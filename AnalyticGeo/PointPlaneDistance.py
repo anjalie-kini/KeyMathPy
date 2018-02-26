@@ -1,7 +1,6 @@
-from math import sqrt
+import math
 
-# Finds the shortest distance between a point and a plane
-def pointPlaneDistance(x1, y1, z1, line1):
-    denom = math.sqrt(line1[0] * line1[0] + line1[1] * line1[1] + line1[2] * line1[2])
-    num = line1[0] * x1 + line1[1] * y1 + line1[2] * z1 + line2[3]
+def pointPlaneDistance(x1, y1, z1, plane1):
+    denom = math.sqrt(plane1[0] * plane1[0] + plane1[1] * plane1[1] + plane1[2] * plane1[2])
+    num = plane1[0] * x1 + plane1[1] * y1 + plane1[2] * z1 + plane1[3]
     return (num/denom)
