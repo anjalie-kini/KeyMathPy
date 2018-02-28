@@ -25,11 +25,17 @@ class Point:
     return self.z
 
   def distance2D(self,other):
+    '''
+    Finds the distance between two points
+    '''
     sq1 = pow((self.getX() - other.getX()), 2)
     sq2 = pow((self.getY() - other.getY()), 2)
     return math.sqrt(sq1 + sq2)
 
   def findLineEquation(self, other):
+    '''
+    Finds the equation of the line that goes through the two points
+    '''
     slope = (self.getY() - other.getY()) / (self.getX() - other.getX())
     b = self.getY() - slope * self.getX()
 
@@ -152,6 +158,9 @@ class Plane:
 
 
   def planeIntersection(self, other):
+    '''
+    Fines the line of intersection between two planes
+    '''
     crossedPlanes = []
     crossedPlanes.append((self.getB()*other.getC()) - (self.getC()*other.getB()))
     crossedPlanes.append((self.getC()*other.getA()) - (self.getA()*other.getC()))
@@ -172,6 +181,10 @@ class Plane:
 
 
   def pointPlaneDistance(self, point1):
+    '''
+    Finds the shortest distance between a point and a plane of
+    the standard form: ax + by + cz = d
+    '''
     denom = math.sqrt(pow(self.getA(),2) + pow(self.getB(),2) + pow(self.getC(),2))
     num = self.getA()*point1.getX() + self.getB()*point1.getY() + self.getC()*point1.getZ() + self.getD()
     return (num/denom)

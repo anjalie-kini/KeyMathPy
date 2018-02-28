@@ -5,6 +5,8 @@ Everybody is invited and welcome to contribute to KeyMathPy. There is a lot to d
 * If you are well versed with math, you could review current function implementations and suggest new and useful functions.
 * If you are not a developer, perhaps you would like to help with the documentation.
 
+NOTE: All functions must be run with Python 3.
+
 The process is straight-forward.
 
 * For those just getting started with pull requests, GitHub has a

@@ -103,3 +103,7 @@ OTHER'S PROJECT WEEK
 
 ### February 27, 2018
 * Added point,line,plane classes and included implementations as methods of the classes
+
+### February 28, 2018
+* Added MIT License
+* Added documentation
