@@ -94,9 +94,12 @@ OTHER'S PROJECT WEEK
 ### February 23, 2018
 * Added two genetic algorithm testSuite
 
-### February 24, 2017
+### February 24, 2018
 * Fixed all tests so they work without being in the same folder as their corresponding functions
 
-### February 25, 2017
+### February 25, 2018
 * Debugged and fixed all functions of AnalyticGeo
 * Merged all tests in AnalyticGeo into a single class using unit test framework and Asserts
+
+### February 27, 2018
+* Added point,line,plane classes and included implementations as methods of the classes
